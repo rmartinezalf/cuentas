@@ -326,6 +326,11 @@
     <Content Include="Views\Movimientos\Details.cshtml" />
     <Content Include="Views\Movimientos\Edit.cshtml" />
     <Content Include="Views\Movimientos\Index.cshtml" />
+    <Content Include="Views\Cuentas1\Create.cshtml" />
+    <Content Include="Views\Cuentas1\Delete.cshtml" />
+    <Content Include="Views\Cuentas1\Details.cshtml" />
+    <Content Include="Views\Cuentas1\Edit.cshtml" />
+    <Content Include="Views\Cuentas1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
