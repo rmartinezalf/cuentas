@@ -1,0 +1,58 @@
+﻿@model Cuentas.Models.Movimientos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Movimientos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorRetiro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorRetiro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorGmf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorGmf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaldoMov)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaldoMov)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CuentaDestino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CuentaDestino)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

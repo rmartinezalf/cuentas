@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cuentasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCliente" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCta" Type="nchar" MaxLength="50" />
+          <Property Name="Excento" Type="nvarchar" MaxLength="2" />
+          <Property Name="Banco" Type="nvarchar" MaxLength="20" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="Saldo" Type="money" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'cuentas.dbo.Movimientos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Movimientos">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="IdCuenta" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCuenta" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="ValorRetiro" Type="money" />
+          <Property Name="ValorGmf" Type="money" />
+          <Property Name="SaldoMov" Type="money" />
+          <Property Name="CuentaDestino" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'cuentas.dbo.Parametros' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parametro" Type="nvarchar" MaxLength="10" />
+          <Property Name="Valor" Type="money" />
+        </EntityType>
+        <EntityContainer Name="cuentasModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movimientos" EntityType="Self.Movimientos" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Movimientos].[id] AS [id], 
+    [Movimientos].[IdCuenta] AS [IdCuenta], 
+    [Movimientos].[Fecha] AS [Fecha], 
+    [Movimientos].[ValorRetiro] AS [ValorRetiro], 
+    [Movimientos].[ValorGmf] AS [ValorGmf], 
+    [Movimientos].[SaldoMov] AS [SaldoMov], 
+    [Movimientos].[CuentaDestino] AS [CuentaDestino]
+    FROM [dbo].[Movimientos] AS [Movimientos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Parametros].[id] AS [id], 
+    [Parametros].[Descripcion] AS [Descripcion], 
+    [Parametros].[Parametro] AS [Parametro], 
+    [Parametros].[Valor] AS [Valor]
+    FROM [dbo].[Parametros] AS [Parametros]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cuentasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCliente" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCta" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Excento" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Banco" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="Saldo" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Movimientos">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="IdCuenta" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCuenta" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="ValorRetiro" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ValorGmf" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SaldoMov" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CuentaDestino" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parametro" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityContainer Name="cuentasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
+          <EntitySet Name="Movimientos" EntityType="Self.Movimientos" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cuentasModelStoreContainer" CdmEntityContainer="cuentasEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="cuentasModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuentas">
+            <EntityTypeMapping TypeName="cuentasModel.Cuentas">
+              <MappingFragment StoreEntitySet="Cuentas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NombreCta" ColumnName="NombreCta" />
+                <ScalarProperty Name="Excento" ColumnName="Excento" />
+                <ScalarProperty Name="Banco" ColumnName="Banco" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movimientos">
+            <EntityTypeMapping TypeName="cuentasModel.Movimientos">
+              <MappingFragment StoreEntitySet="Movimientos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ValorRetiro" ColumnName="ValorRetiro" />
+                <ScalarProperty Name="ValorGmf" ColumnName="ValorGmf" />
+                <ScalarProperty Name="SaldoMov" ColumnName="SaldoMov" />
+                <ScalarProperty Name="CuentaDestino" ColumnName="CuentaDestino" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametros">
+            <EntityTypeMapping TypeName="cuentasModel.Parametros">
+              <MappingFragment StoreEntitySet="Parametros">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Parametro" ColumnName="Parametro" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

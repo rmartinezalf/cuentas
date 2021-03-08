@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cuentasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCliente" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cuentas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCta" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Excento" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="Banco" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IdCliente" Type="Int32" />
+    <Property Name="Saldo" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Movimientos">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="IdCuenta" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCuenta" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="ValorRetiro" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ValorGmf" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SaldoMov" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CuentaDestino" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Parametros">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Parametro" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityContainer Name="cuentasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
+    <EntitySet Name="Movimientos" EntityType="Self.Movimientos" />
+    <EntitySet Name="Parametros" EntityType="Self.Parametros" />
+  </EntityContainer>
+</Schema>

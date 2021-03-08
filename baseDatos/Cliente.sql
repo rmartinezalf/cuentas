@@ -1,0 +1,21 @@
+USE [cuentas]
+GO
+
+/****** Object:  Table [dbo].[Cliente]    Script Date: 2/03/2021 10:46:26 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Cliente](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[NombreCliente] [nchar](100) NULL,
+ CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+

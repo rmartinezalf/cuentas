@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="cuentasModel2StoreContainer" CdmEntityContainer="cuentasEntities2">
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="cuentasModel2.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cuentas">
+      <EntityTypeMapping TypeName="cuentasModel2.Cuentas">
+        <MappingFragment StoreEntitySet="Cuentas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NombreCta" ColumnName="NombreCta" />
+          <ScalarProperty Name="Excento" ColumnName="Excento" />
+          <ScalarProperty Name="Banco" ColumnName="Banco" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movimientos">
+      <EntityTypeMapping TypeName="cuentasModel2.Movimientos">
+        <MappingFragment StoreEntitySet="Movimientos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="ValorRetiro" ColumnName="ValorRetiro" />
+          <ScalarProperty Name="ValorGmf" ColumnName="ValorGmf" />
+          <ScalarProperty Name="SaldoMov" ColumnName="SaldoMov" />
+          <ScalarProperty Name="CuentaDestino" ColumnName="CuentaDestino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parametros">
+      <EntityTypeMapping TypeName="cuentasModel2.Parametros">
+        <MappingFragment StoreEntitySet="Parametros">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Parametro" ColumnName="Parametro" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
